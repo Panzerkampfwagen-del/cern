@@ -1,0 +1,31 @@
+name: score
+out: results/score
+
+model:
+  input_dim: 8
+  hidden: [128, 256, 128]
+  sigma_min: 0.01
+  sigma_max: 3.0
+  n_levels: 10
+
+data:
+  features: results/features.npz
+  seed: 0
+  log_features: [0, 1, 2, 3, 6]
+  splits:
+    val_bg: 80000
+    val_sig: 20000
+    test_bg: 200000
+    test_sig: 10000
+
+train:
+  lr: 0.0002
+  epochs: 300
+  batch: 256
+  weight_decay: 1.0e-5
+  grad_clip: null
+  cosine: true
+  log_every: 10
+  patience: 40
+  early_stop_metric: auc
+  val_subsample: 20000

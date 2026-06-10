@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Raw LHCO dataset (~2.9 GB) -- fetch via data/parallel_download.py
+data/raw/
+*.part
+
+# Generated artifacts: checkpoints, cached features/scores, chunk shards, logs.
+# Keep only the result figures so the README renders.
+results/*
+!results/*.png
+
+# Task spec: kept locally, not part of the project
+cern_anom_claudecode_prompt.md
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
