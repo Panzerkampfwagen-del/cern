@@ -4,7 +4,7 @@
 # (stored at the end of the file), so it fails loudly if the file is incomplete.
 set -u
 cd "$(dirname "$0")"
-PY=/home/aryan/anaconda3/envs/qiskit_clean/bin/python
+PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
 LOG=results/run_pipeline.log
 exec > >(tee -a "$LOG") 2>&1
 

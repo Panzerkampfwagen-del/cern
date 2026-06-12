@@ -12,9 +12,6 @@ data/raw/
 results/*
 !results/*.png
 
-# Task spec: kept locally, not part of the project
-cern_anom_claudecode_prompt.md
-
 # Editor / OS
 .vscode/
 .idea/

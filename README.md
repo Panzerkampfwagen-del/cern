@@ -68,16 +68,21 @@ Plots: [feature_distributions](results/feature_distributions.png),
 
 ## Setup
 
-Everything runs in the conda env `qiskit_clean` (CUDA torch + scipy + sklearn +
-`fastjet` + `tables`):
+Create the dedicated `cern_anom` conda environment (Python 3.11, CUDA torch):
 
 ```bash
-PY=/home/aryan/anaconda3/envs/qiskit_clean/bin/python
+conda env create -f environment.yml   # creates cern_anom
+# or, to install manually into an existing env:
+pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu121
 ```
 
-Key dependencies: `torch`, `numpy`, `pyyaml`, `tables` (PyTables), `fastjet`,
-`scipy`, `scikit-learn`. `matplotlib` is optional (arrays are always saved as
-`.npz`; PNGs render only if it is present).
+```bash
+PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
+```
+
+Key dependencies: `torch==2.5.1+cu121`, `numpy`, `pyyaml`, `tables` (PyTables),
+`fastjet`, `scipy`, `scikit-learn`. `matplotlib` is optional (arrays are always
+saved as `.npz`; PNGs render only if it is present).
 
 ---
 
@@ -127,7 +132,7 @@ All commands use the project env (see [Setup](#setup)):
 
 ```bash
 cd /home/aryan/cern
-PY=/home/aryan/anaconda3/envs/qiskit_clean/bin/python
+PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
 ```
 
 **Quickstart — the models are already trained; just see the results** (instant,

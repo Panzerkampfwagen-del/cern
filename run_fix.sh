@@ -4,7 +4,7 @@
 # autoencoder (AUC 0.73) is left as-is; benchmark/plots reuse its results.
 set -u
 cd "$(dirname "$0")"
-PY=/home/aryan/anaconda3/envs/qiskit_clean/bin/python
+PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
 LOG=results/run_fix.log
 exec > >(tee -a "$LOG") 2>&1
 
