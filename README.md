@@ -77,7 +77,8 @@ pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu1
 ```
 
 ```bash
-PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
+conda activate cern_anom
+PY=python
 ```
 
 Key dependencies: `torch==2.5.1+cu121`, `numpy`, `pyyaml`, `tables` (PyTables),
@@ -128,11 +129,11 @@ columns 0–2099 are 700 × (pT, η, φ), column 2100 is the truth label.
 
 ## Running
 
-All commands use the project env (see [Setup](#setup)):
+All commands use the project env (see [Setup](#setup)), run from the repo root:
 
 ```bash
-cd /home/aryan/cern
-PY=/home/aryan/anaconda3/envs/cern_anom/bin/python
+conda activate cern_anom
+PY=python
 ```
 
 **Quickstart — the models are already trained; just see the results** (instant,
