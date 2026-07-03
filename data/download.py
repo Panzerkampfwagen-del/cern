@@ -26,13 +26,28 @@ DEFAULT_PATH = os.path.join(os.path.dirname(__file__), "raw",
 N_PARTICLES = 700
 
 
+def _expected_size(url):
+    """Exact Content-Length from a HEAD request, or None if it cannot be read."""
+    try:
+        req = urllib.request.Request(url, method="HEAD")
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return int(r.headers["Content-Length"])
+    except Exception:
+        return None
+
+
 def download(path=DEFAULT_PATH, url=ZENODO_URL):
     """Download the R&D HDF5 if it is not already present."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    if os.path.exists(path) and os.path.getsize(path) > 2_900_000_000:
-        print(f"[download] already present: {path} "
-              f"({os.path.getsize(path) / 1e9:.2f} GB)")
-        return path
+    # Compare against the exact remote size so a truncated file is re-fetched;
+    # if HEAD fails, fall back to the coarse >2.9 GB floor.
+    if os.path.exists(path):
+        expected = _expected_size(url)
+        have = os.path.getsize(path)
+        complete = have == expected if expected is not None else have > 2_900_000_000
+        if complete:
+            print(f"[download] already present: {path} ({have / 1e9:.2f} GB)")
+            return path
     print(f"[download] fetching {url}\n           -> {path}")
     urllib.request.urlretrieve(url, path)
     print(f"[download] done ({os.path.getsize(path) / 1e9:.2f} GB)")
