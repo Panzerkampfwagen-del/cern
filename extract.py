@@ -32,7 +32,9 @@ def _process_range(args):
     # Write atomically: a worker killed mid-write would otherwise leave a
     # truncated .npz at `out` that the exists() check above treats as done,
     # so it is never re-extracted and the merge fails on every rerun.
-    tmp = out + ".tmp"
+    # np.savez appends .npz to any name not already ending in .npz,
+    # so the temp file must end in .npz or os.replace won't find it.
+    tmp = out[:-4] + ".tmp.npz"
     np.savez(tmp, features=feats[valid], labels=labels[valid])
     os.replace(tmp, out)
     return out
