@@ -17,6 +17,8 @@ import urllib.request
 import numpy as np
 import tables
 
+from .parallel_download import total_size
+
 ZENODO_URL = (
     "https://zenodo.org/api/records/6466204/files/"
     "events_anomalydetection_v2.h5/content"
@@ -29,9 +31,7 @@ N_PARTICLES = 700
 def _expected_size(url):
     """Exact Content-Length from a HEAD request, or None if it cannot be read."""
     try:
-        req = urllib.request.Request(url, method="HEAD")
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return int(r.headers["Content-Length"])
+        return total_size(url)
     except Exception:
         return None
 
