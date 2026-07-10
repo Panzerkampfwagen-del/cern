@@ -44,7 +44,9 @@ def download(path=DEFAULT_PATH, url=ZENODO_URL):
     if os.path.exists(path):
         expected = _expected_size(url)
         have = os.path.getsize(path)
-        complete = have == expected if expected is not None else have > 2_900_000_000
+        # Treat a missing/zero HEAD size like "unknown" and use the coarse floor,
+        # so a stub Content-Length: 0 can't mark an empty file complete.
+        complete = have == expected if expected else have > 2_900_000_000
         if complete:
             print(f"[download] already present: {path} ({have / 1e9:.2f} GB)")
             return path
