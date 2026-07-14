@@ -15,8 +15,6 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
 
-from .jet_features import FEATURE_NAMES, N_FEATURES
-
 
 def load_features(path):
     """Load extracted features. Accepts a .npz with 'features' and 'labels'."""

@@ -3,7 +3,6 @@
 For each noise level (and combinations) report BOTH test AUC and m_jj sculpting
 JS, so we can pick a score that discriminates without keying on m_jj.
 """
-import numpy as np
 import torch
 import yaml
 from sklearn.metrics import roc_auc_score

@@ -9,11 +9,8 @@ so the background-trained score cannot return them to their origin.
 Plain MLP (no diffusion library): the content is in the objective and sampler.
 """
 
-import math
-
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 def noise_schedule(sigma_min=0.01, sigma_max=3.0, n_levels=10):
